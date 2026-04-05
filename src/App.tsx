@@ -56,6 +56,14 @@ interface Experience {
 const PROFILE_IMAGE = "/profile.png"; 
 const TERRACOTTA_COLOR = "#A65D37";
 
+// Dynamic base URL for images
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    return `${window.location.protocol}//${window.location.host}`;
+  }
+  return "";
+};
+
 const translations = {
   fr: {
     nav: {
@@ -84,7 +92,7 @@ const translations = {
       title: "Expertise Technique",
       subtitle: "Une stack technologique moderne et maîtrisée pour des solutions performantes.",
       vision_title: "Vision Technique",
-      vision_desc: "Spécialisé dans l'écosystème **Full-Stack**, je privilégie des architectures propres (Clean Architecture) et évolutives. Mon expertise me permet de transformer des besoins complexes en solutions numériques fluides et performantes."
+      vision_desc: "Spécialisé dans l'écosystème Full-Stack, je privilégie des architectures propres (Clean Architecture) et évolutives. Mon expertise me permet de transformer des besoins complexes en solutions numériques fluides et performantes."
     },
     experience: {
       title: "Parcours &",
@@ -119,25 +127,25 @@ const translations = {
     },
     projects_data: [
       {
-        title: "Application Mobile Iwaju",
-        description: "Optimisation et reprise d'une application mobile de Flutter vers React Native.",
-        tags: ["React Native", "TypeScript", "API REST"],
-        link: "#",
-        image: "https://picsum.photos/seed/mobile/800/600"
+        title: "Mon Portfolio Professionnel",
+        description: "Portfolio moderne et interactif développé avec React, TypeScript et Tailwind CSS. Présentation de mes compétences et réalisations avec des animations fluides et une expérience utilisateur optimisée.",
+        tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+        link: "https://mansourtoure.vercel.app/",
+        image: `${getBaseUrl()}/portfolio.png`
       },
       {
-        title: "Système de Gestion Backend",
-        description: "Architecture modulaire basée sur le modèle Repository-Controller-Service avec Laravel.",
-        tags: ["Laravel", "PHP", "MySQL", "API"],
+        title: "LLB Gestion",
+        description: "Plateforme complète de gestion locative pour administrer vos biens immobiliers, vos parcelles et suivre l'activité de votre flotte de motos taxis en temps réel.",
+        tags: ["Laravel", "PHP", "MySQL", "Blade", "Tailwind CSS"],
         link: "#",
-        image: "https://picsum.photos/seed/backend/800/600"
+        image: `${getBaseUrl()}/llb-gestion.png`
       },
       {
-        title: "Dashboard Analytique",
-        description: "Visualisation de données complexes et gestion d'interactions front/back fluides.",
-        tags: ["React", "Node.js", "Express.js", "Tailwind"],
+        title: "MediConseil",
+        description: "Chatbot médical intelligent pour la recommandation de traitements basé sur l'IA. Votre partenaire de santé intelligent avec triage 24/7 et accès aux dossiers patients.",
+        tags: ["Node.js", "Express.js", "JavaScript", "MySQL", "HTML/CSS", "Intelligence Artificielle"],
         link: "#",
-        image: "https://picsum.photos/seed/dash/800/600"
+        image: `${getBaseUrl()}/mediconseil.png`
       }
     ],
     experiences_data: [
@@ -216,25 +224,25 @@ const translations = {
     },
     projects_data: [
       {
-        title: "Iwaju Mobile App",
-        description: "Optimization and takeover of a mobile application from Flutter to React Native.",
-        tags: ["React Native", "TypeScript", "REST API"],
-        link: "#",
-        image: "https://picsum.photos/seed/mobile/800/600"
+        title: "My Professional Portfolio",
+        description: "Modern and interactive portfolio developed with React, TypeScript and Tailwind CSS. Showcase of my skills and achievements with smooth animations and optimized user experience.",
+        tags: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+        link: "https://mansourtoure.vercel.app/",
+        image: `${getBaseUrl()}/portfolio.png`
       },
       {
-        title: "Backend Management System",
-        description: "Modular architecture based on the Repository-Controller-Service model with Laravel.",
-        tags: ["Laravel", "PHP", "MySQL", "API"],
+        title: "LLB Gestion",
+        description: "Complete rental management platform to administer your real estate properties, your parcels and track your motorcycle taxi fleet activity in real time.",
+        tags: ["Laravel", "PHP", "MySQL", "Blade", "Tailwind CSS"],
         link: "#",
-        image: "https://picsum.photos/seed/backend/800/600"
+        image: `${getBaseUrl()}/llb-gestion.png`
       },
       {
-        title: "Analytical Dashboard",
-        description: "Visualization of complex data and management of fluid front/back interactions.",
-        tags: ["React", "Node.js", "Express.js", "Tailwind"],
+        title: "MediConseil",
+        description: "Intelligent medical chatbot for treatment recommendations based on AI. Your smart health partner with 24/7 triage and patient records access.",
+        tags: ["Node.js", "Express.js", "JavaScript", "MySQL", "HTML/CSS", "Artificial Intelligence"],
         link: "#",
-        image: "https://picsum.photos/seed/dash/800/600"
+        image: `${getBaseUrl()}/mediconseil.png`
       }
     ],
     experiences_data: [
@@ -353,7 +361,7 @@ const Navbar = ({ lang, setLang, activeSection }: { lang: 'fr' | 'en', setLang: 
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-all glass px-3 py-1.5 rounded-full border border-white/5 active:scale-95"
             >
-              <span className="text-base">{lang === 'fr' ? '🇫🇷' : '🇬🇧'}</span>
+              <span className="text-base font-emoji">{lang === 'fr' ? '🇫🇷' : '🇬🇧'}</span>
               {lang === 'fr' ? 'FR' : 'EN'}
               <ChevronDown className={cn("w-3 h-3 transition-transform duration-300", isLangOpen && "rotate-180")} />
             </button>
@@ -371,13 +379,13 @@ const Navbar = ({ lang, setLang, activeSection }: { lang: 'fr' | 'en', setLang: 
                     onClick={() => { setLang('fr'); setIsLangOpen(false); }}
                     className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-primary/20 transition-colors text-left"
                   >
-                    <span className="text-lg">🇫🇷</span> Français
+                    <span className="text-lg font-emoji">🇫🇷</span> Français
                   </button>
                   <button 
                     onClick={() => { setLang('en'); setIsLangOpen(false); }}
                     className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-primary/20 transition-colors text-left"
                   >
-                    <span className="text-lg">🇬🇧</span> English
+                    <span className="text-lg font-emoji">🇬🇧</span> English
                   </button>
                 </motion.div>
               )}
@@ -569,7 +577,7 @@ const AboutSection = ({ lang }: { lang: 'fr' | 'en' }) => {
           </div>
           
           <div className="mt-12 flex items-center gap-6">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors"><Github className="w-6 h-6" /></a>
+            <a href="https://github.com/ToureMansour" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors"><Github className="w-6 h-6" /></a>
             <a href="https://www.linkedin.com/in/mansourou-tour%C3%A9-souleymane-093ab3383/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors"><Linkedin className="w-6 h-6" /></a>
             <a href="https://wa.me/2290158821692" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-primary transition-colors"><WhatsAppIcon className="w-6 h-6" /></a>
             <a href="mailto:mansouroutoures@gmail.com" className="text-slate-400 hover:text-primary transition-colors"><Mail className="w-6 h-6" /></a>

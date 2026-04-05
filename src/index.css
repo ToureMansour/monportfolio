@@ -30,3 +30,10 @@
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-orange-400;
 }
 
+.font-emoji {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Emoji", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+
